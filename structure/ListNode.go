@@ -51,4 +51,10 @@ func (l *ListNode) GetNodeWith(val int) *ListNode {
 	return res
 }
 
-func Ints2ListWithCycle(nums []int, pos int) *ListNode {}
+// 构建有环链表
+func Ints2ListWithCycle(nums []int, pos int) *ListNode {
+	head := Ints2List(nums)
+	if pos == -1 {
+
+	}
+}
