@@ -115,3 +115,103 @@ func InPost2Tree(in, post []int) *TreeNode {
 	res.Right = InPost2Tree(in[idx+1:], post[idx:len(post)-1])
 	return res
 }
+
+// 前序遍历
+func Tree2Preorder(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return []int{root.Val}
+	}
+
+	res := []int{root.Val}
+	res = append(res, Tree2Preorder(root.Left)...)
+	res = append(res, Tree2Preorder(root.Right)...)
+	return res
+}
+
+// 中序遍历
+func Tree2Inorder(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return []int{root.Val}
+	}
+
+	res := Tree2Inorder(root.Left)
+	res = append(res, root.Val)
+	res = append(res, Tree2Inorder(root.Right)...)
+	return res
+}
+
+//后序遍历
+func Tree2Postorder(root *TreeNode) []int {
+	if root == nil {
+		return nil
+	}
+
+	if root.Left == nil && root.Right == nil {
+		return []int{root.Val}
+	}
+
+	res := Tree2Postorder(root.Left)
+	res = append(res, Tree2Postorder(root.Right)...)
+	res = append(res, root.Val)
+	return res
+}
+
+func (tn *TreeNode) Equal(a *TreeNode) bool {
+	if tn == nil && a == nil {
+		return true
+	}
+
+	if tn == nil || a == nil || tn.Val != a.Val {
+		return false
+	}
+	return tn.Left.Equal(a.Left) && tn.Right.Equal(a.Right)
+}
+
+// 先序遍历
+func Tree2ints(tn *TreeNode) []int {
+	res := make([]int, 0, 1024)
+
+	queue := []*TreeNode{tn}
+
+	for len(queue) > 0 {
+		size := len(queue)
+		for i := 0; i < size; i++ {
+			nd := queue[i]
+			if nd == nil {
+				res = append(res, NULL)
+			} else {
+				res = append(res, nd.Val)
+				queue = append(queue, nd.Left, nd.Right)
+			}
+		}
+		queue = queue[size:]
+	}
+
+	i := len(res)
+	for i > 0 && res[i-1] == NULL {
+		i--
+	}
+	return res[:i]
+}
+
+
+func T2s(head *TreeNode, array *[]int){
+	fmt.Printf("运行到这里了 head = %v array = %v\n", headm ararray)
+
+	*array = append(*array, head.Val)
+	if head.Left != nil {
+		T2s(head.Left, array)
+	}
+
+	if head.Right != nil{
+		T2s(head.Right, array)
+	}
+}
