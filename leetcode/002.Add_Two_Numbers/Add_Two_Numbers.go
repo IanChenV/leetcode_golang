@@ -1,7 +1,5 @@
 package leetcode
 
-import "testing"
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -32,8 +30,4 @@ func addTwoNumbers(l1, l2 *ListNode) *ListNode {
 		current.Next = &ListNode{Val: carry}
 	}
 	return dump.Next
-}
-
-func Test_addTwoNumbers(t *testing.T) {
-
 }
